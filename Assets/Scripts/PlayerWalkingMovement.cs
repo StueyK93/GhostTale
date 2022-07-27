@@ -1,17 +1,10 @@
 using UnityEngine;
 
-public class PlayerWalkingMovement : MonoBehaviour, IPlayerInputs
+public class PlayerWalkingMovement : MonoBehaviour
 { 
-    [SerializeField]
-    private float speed;
+    public float speed;
     protected Vector2 direction;
     Rigidbody2D rb;
-
-    public float Speed
-    {
-        get { return speed; }
-        set { speed = value; }
-    }
 
     public virtual void WalkingMovement()
     {

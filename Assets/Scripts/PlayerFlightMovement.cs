@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFlightMovement : MonoBehaviour, IPlayerInputs
+public class PlayerFlightMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
+    public float speed;
     public float rotationSpeed;
     protected Vector2 direction;
     public Transform flightTarget;
     Rigidbody2D rb;
-
-    public float Speed
-    {
-        get { return speed; }
-        set { speed = value; }
-    }
 
     public void GetInput()
     {
