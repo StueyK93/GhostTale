@@ -7,7 +7,7 @@ public class GhostMode : MonoBehaviour
 {
     private GameObject pl;
     private SpriteRenderer sp;
-    private bool ghost = false;
+    public bool ghost = false;
 
     void Start()
     {

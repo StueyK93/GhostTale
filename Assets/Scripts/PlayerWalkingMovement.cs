@@ -12,7 +12,6 @@ public class PlayerWalkingMovement : MonoBehaviour
         rb.gravityScale = 1;
         rb.rotation = 0;
         rb.freezeRotation = true;
-
     }
 
     public void GetInput()

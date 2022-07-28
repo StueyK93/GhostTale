@@ -29,7 +29,6 @@ public class PlayerFlightMovement : MonoBehaviour
         rb.gravityScale = 0;
         rb.freezeRotation = false;
         rb.velocity = Vector2.zero;
-
         float xAxis = Input.GetAxis("Horizontal");
         Vector3 pos = flightTarget.position;
 
