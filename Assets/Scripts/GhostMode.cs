@@ -24,15 +24,15 @@ public class GhostMode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && ghost == false)
         {
             LowOpacity(0.5f);
-            StartCoroutine(RestoreOpacity(1f));
+            StartCoroutine(RestoreOpacity(1f, 2));
         }
     }
 
-    IEnumerator RestoreOpacity(float opacity)
+    IEnumerator RestoreOpacity(float opacity, int time)
     {
         if (ghost == true)
         {
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(time);
             {
                 Debug.Log("Return to normal");
                 sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, opacity);
