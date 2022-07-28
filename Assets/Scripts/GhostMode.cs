@@ -7,7 +7,7 @@ public class GhostMode : MonoBehaviour
 {
     private GameObject pl;
     private SpriteRenderer sp;
-    private bool Ghost = false;
+    private bool ghost = false;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class GhostMode : MonoBehaviour
 
     void ChangeStatus()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && ghost == false)
         {
             LowOpacity(0.5f);
             StartCoroutine(RestoreOpacity(1f));
@@ -30,13 +30,13 @@ public class GhostMode : MonoBehaviour
 
     IEnumerator RestoreOpacity(float opacity)
     {
-        if (Ghost == true)
+        if (ghost == true)
         {
             yield return new WaitForSecondsRealtime(2);
             {
                 Debug.Log("Return to normal");
                 sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, opacity);
-                Ghost = false;
+                ghost = false;
             }
         }
     }
@@ -45,6 +45,6 @@ public class GhostMode : MonoBehaviour
     {
         Debug.Log("Ghost Mode Enabled");
         sp.color = new Color(sp.color.r, sp.color.g, sp.color.b, opacity);
-        Ghost = true;
+        ghost = true;
     }
 }
