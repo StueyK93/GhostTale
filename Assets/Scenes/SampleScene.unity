@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 406491785}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Phase Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,6 +1126,7 @@ GameObject:
   - component: {fileID: 1313603334}
   - component: {fileID: 1313603336}
   - component: {fileID: 1313603333}
+  - component: {fileID: 1313603337}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1277,7 +1278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c56bff14ae1ae94780190de2eb5de59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walking: {fileID: 0}
+  currentlyWalking: 0
+  currentlyFlying: 0
 --- !u!114 &1313603336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,6 +1293,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghost: 0
+--- !u!114 &1313603337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313603328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1093edb4537e19b48a90bf61305d3e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plTa: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1518869435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1432,7 @@ GameObject:
   - component: {fileID: 1615779591}
   m_Layer: 0
   m_Name: PhaseUI
-  m_TagString: Untagged
+  m_TagString: PhaseUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,6 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252f53052b919844f8eb808f773bd5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetDisplayed: 0
 --- !u!1 &1787140539
 GameObject:
   m_ObjectHideFlags: 0

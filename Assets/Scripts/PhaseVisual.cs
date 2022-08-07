@@ -5,10 +5,13 @@ using UnityEngine;
 public class PhaseVisual : MonoBehaviour
 {
     private SpriteRenderer[] phase_SpR;
+    private UpdateMovement uM;
+    public bool targetDisplayed = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        uM = GameObject.FindWithTag("Player").GetComponent<UpdateMovement>();
         phase_SpR = GetComponentsInChildren<SpriteRenderer>();
         foreach (var SpR in phase_SpR)
         {
@@ -24,24 +27,27 @@ public class PhaseVisual : MonoBehaviour
 
     void DisplayPhaseTarget()
     {
-        /*
-         * Look to include validation to change the target location depending on last input - L/R?
-         * Make sure this is only able to be done if the player is still or include whilst moving?
-         * Need to add a way to stop this from being accessible when flying - trying to add 
-         * GetComponent<script>().enabled
-         * will throw an Object Reference Exception so need to find a workaround
-         */
-        
-        if (Input.GetKey(KeyCode.LeftControl))
+        /* Look to include validation to change the target location depending on last input - L/R?
+         * Make sure this is only able to be done if the player is still or include whilst moving? */
+
+        /* Originally this did not work because I had not set the uM variable to look specifically at the 
+         * player */
+
+        if (uM.currentlyWalking)
         {
-            foreach (var SpR in phase_SpR)
+            if (Input.GetKey(KeyCode.LeftControl))
             {
-                SpR.enabled = true;
+                foreach (var SpR in phase_SpR)
+                {
+                    SpR.enabled = true;
+                }
+                targetDisplayed = true;
             }
-        }
-        else foreach (var SpR in phase_SpR)
-        {
-                SpR.enabled = false;
+            else foreach (var SpR in phase_SpR)
+                {
+                    SpR.enabled = false;
+                    targetDisplayed = false;
+                }
         }
     }
 }
