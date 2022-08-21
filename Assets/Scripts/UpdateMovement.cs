@@ -8,6 +8,7 @@ public class UpdateMovement : MonoBehaviour
     PlayerWalkingMovement walking;
     public bool currentlyWalking;
     public bool currentlyFlying;
+    public bool currentlyPhasing;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class UpdateMovement : MonoBehaviour
         currentlyFlying = false;
         walking.enabled = true;
         currentlyWalking = true;
+        currentlyPhasing = false;
     }
 
     void MovementChange()
@@ -40,8 +42,29 @@ public class UpdateMovement : MonoBehaviour
         }
     }
 
+    void PhaseMovementChange()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            //when walking you will be unable to move in any direction
+            currentlyPhasing = true;
+            walking.enabled = false;
+        }
+        if (currentlyFlying == false && currentlyPhasing == false)
+        {
+            //if you are not flying and you are not trying to "phase" Walking movement needs to be enabled
+            walking.enabled = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            //if Left Control key is not held down, you are no longer in the "Phase" transition
+            currentlyPhasing = false;
+        }
+    }
+
     public void Update()
     {
         MovementChange();
+        PhaseMovementChange();
     }
 }

@@ -30,9 +30,6 @@ public class PhaseVisual : MonoBehaviour
         /* Look to include validation to change the target location depending on last input - L/R?
          * Make sure this is only able to be done if the player is still or include whilst moving? */
 
-        /* Originally this did not work because I had not set the uM variable to look specifically at the 
-         * player */
-
         if (uM.currentlyWalking)
         {
             if (Input.GetKey(KeyCode.LeftControl))
