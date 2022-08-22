@@ -22,6 +22,7 @@ public class PhaseSwap : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 player.transform.position = plTa.transform.position;
+                
             }
         }
     }

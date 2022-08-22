@@ -7,6 +7,7 @@ TagManager:
   - Flight Target
   - Phase Target
   - PhaseUI
+  - RotationPoint
   layers:
   - Default
   - TransparentFX

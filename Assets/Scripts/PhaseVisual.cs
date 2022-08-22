@@ -8,6 +8,7 @@ public class PhaseVisual : MonoBehaviour
     private UpdateMovement uM;
     public bool targetDisplayed = false;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,6 @@ public class PhaseVisual : MonoBehaviour
 
     void DisplayPhaseTarget()
     {
-        /* Look to include validation to change the target location depending on last input - L/R?
-         * Make sure this is only able to be done if the player is still or include whilst moving? */
-
         if (uM.currentlyWalking)
         {
             if (Input.GetKey(KeyCode.LeftControl))
