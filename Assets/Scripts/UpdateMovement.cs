@@ -10,7 +10,7 @@ public class UpdateMovement : MonoBehaviour
     public bool currentlyFlying;
     public bool currentlyPhasing;
 
-    private void Start()
+    public void Start()
     {
         flying = GetComponent<PlayerFlightMovement>();
         walking = GetComponent<PlayerWalkingMovement>();
