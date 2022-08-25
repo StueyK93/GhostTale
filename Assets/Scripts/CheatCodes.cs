@@ -6,11 +6,20 @@ public class CheatCodes : MonoBehaviour
 {
     public string[] cheatCode;
     private int index;
+    
     public GameObject player;
     public GameObject hook;
+    
     private SpringJoint2D sj2d;
     private UpdateMovement uM;
     private PlayerWalkingMovement pwm;
+    
+    public float maximumDistance = 3f;
+    public Rigidbody2D rb;
+    public float releaseTime;
+    
+    private bool isPressed = false;
+
 
     private void Start()
     {
@@ -44,31 +53,19 @@ public class CheatCodes : MonoBehaviour
         if (index == cheatCode.Length)
         {
             Debug.Log("Cheat entered");
-            CheatStatus();
+            SlingStatus();
             index = 0;
         }
     }
 
-    void CheatStatus()
+    void SlingStatus()
     {
         sj2d.enabled = !sj2d.enabled;
         hook.GetComponent<Rigidbody2D>().simulated = !hook.GetComponent<Rigidbody2D>().simulated;
         uM.enabled = !uM.enabled;
         pwm.enabled = !pwm.enabled;
     }
-
-    void SlingShot()
-    {
-        if (isPressed)
-        {
-            rb.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
-    }
-
-    public Rigidbody2D rb;
-    private bool isPressed = false;
-    public float releaseTime;
-
+     
     void OnMouseDown()
     {
         if (uM.enabled == false)
@@ -79,6 +76,7 @@ public class CheatCodes : MonoBehaviour
             player.GetComponent<CircleCollider2D>().enabled = !player.GetComponent<CircleCollider2D>().enabled;
         }
     }
+    
     void OnMouseUp()
     {
         if (uM.enabled == false)
@@ -88,12 +86,26 @@ public class CheatCodes : MonoBehaviour
             StartCoroutine(Unhook());            
         }
     }
+    
+    void SlingShot()
+    {
+        if (isPressed)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if(Vector3.Distance(mousePos, hook.GetComponent<Rigidbody2D>()) >  maximumDistance)
+            {
+                rb.position = hook.position + (mousePos - hook.position).normalized * maximumDistance;
+            }
+            else
+            rb.position = mousePos;
+        }
+    }
 
     IEnumerator Unhook()
     {
         yield return new WaitForSeconds(releaseTime);
         hook.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + .5f, player.transform.position.z);
-        CheatStatus();
+        SlingStatus();
         yield return new WaitForSeconds(releaseTime + .25f);
         player.GetComponent<CircleCollider2D>().enabled = !player.GetComponent<CircleCollider2D>().enabled;
     }
